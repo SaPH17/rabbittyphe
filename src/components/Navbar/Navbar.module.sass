@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap')
+
+.navbarContainer
+    display: flex
+    align-items: center
+    gap: 1em
+    flex-grow: 1
+
+.logo
+    font-family: 'Lexend Deca', sans-serif
+    color: rgb(209, 208, 197)
+    font-weight: 400
+    font-size: 2rem
+
+.navLinks ul
+    display: flex
+    align-items: center
+    list-style: none
+    gap: 1.5em
+
+    .linkItem
+        display: flex
+        align-items: center
+        font-size: 1.25rem
+        color: rgb(100, 102, 105)
+        margin-top: 0.4em
+        cursor: pointer
+
+        &:hover
+            color: #c8c7bc
+
+.secondNavLinks
+    margin-left: auto
+
+@media screen and ( max-width: 800px )
+    .navLinks ul .linkItem
+        font-size: 1rem
