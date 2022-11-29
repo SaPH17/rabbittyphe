@@ -1,18 +1,28 @@
-import styles from './App.module.sass'
-import Navbar from './components/Navbar/Navbar'
-import Configbar from './components/Configbar/Configbar'
+import styles from "./App.module.sass"
+import Navbar from "./components/Navbar/Navbar"
+import Configbar from "./components/Configbar/Configbar"
+import ConfigbarModal from "./components/Configbar/ConfigbarModal/ConfigbarModal"
+import { useState } from "react"
 
 function App() {
-    return (
-        <div className={styles.app}>
-            <div></div>
-            <div className={styles.appContainer}>
-                <Navbar />
-                <Configbar />
-            </div>
-            <div></div>
-        </div>
-    )
+	const [configbarVisible, setIsConfigbarVisible] = useState(false)
+
+	return (
+		<>
+			<ConfigbarModal
+				isVisible={configbarVisible}
+				setIsConfigbarVisible={setIsConfigbarVisible}
+			/>
+			<div className={styles.app}>
+				<div></div>
+				<div className={styles.appContainer}>
+					<Navbar />
+					<Configbar setIsConfigbarVisible={setIsConfigbarVisible} />
+				</div>
+				<div></div>
+			</div>
+		</>
+	)
 }
 
 export default App

@@ -1,5 +1,4 @@
 @import '../../variables'
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap')
 
 .configbarContainer
     display: flex
@@ -22,8 +21,17 @@
     cursor: pointer
     transition-duration: 150ms
 
+    .itemIcon
+        margin-top: 4px
+
     &:hover
         color: $text-color
+
+.configbarItemActive
+    color: $primary-color
+
+.configbarMobile
+    display: none
 
 .divider
     background-color: $background-color
@@ -31,3 +39,21 @@
     width: 0.25rem
     height: auto
     margin: 0.5em 0
+
+@media screen and ( max-width: 900px )
+    .configbar
+        padding: 0 0.5rem
+    .configbarItem
+        padding: 0.75rem 0.4rem
+
+@media screen and ( max-width: 800px )
+    .configbar
+        display: none
+
+    .configbarMobile
+        display: flex
+        background-color: $secondary-alt-color
+        border-radius: 0.5rem
+
+    .configbarItem
+        padding: 0.5rem 1.25rem

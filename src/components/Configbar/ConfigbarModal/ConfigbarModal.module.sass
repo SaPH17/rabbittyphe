@@ -1,0 +1,35 @@
+@import '../../../variables'
+
+.configbarModalContainer
+    position: fixed
+    z-index: 10
+    inset: 0
+    padding: 2em 0
+    background: rgba(0,0,0,.75)
+    display: flex
+    justify-content: center
+    align-items: center
+
+.configbarModal
+    background-color: $background-color
+    border-radius: 0.5em
+    max-width: 400px
+    display: flex
+    width: calc(100vw - 2em)
+    flex-direction: column
+    gap: 1em
+    padding: 1em
+
+.configbarItem
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 0.5em
+    color: $text-color
+    border-radius: 0.5em
+    background-color: $secondary-alt-color
+    font-family: 'Roboto Mono', monospace
+
+.configbarItemActive
+    background-color: $primary-color
+    color: $background-color
