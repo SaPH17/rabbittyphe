@@ -8,6 +8,8 @@ import {
 	FaWrench,
 } from "react-icons/fa"
 import { IoMdSettings } from "react-icons/io"
+import { setActiveConfig } from "../../store/slices/activeConfig"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
 
 export type ConfigbarProps = {
 	setIsConfigbarVisible: Function
@@ -50,12 +52,22 @@ export const menus = [
 ]
 
 export default function Configbar({ setIsConfigbarVisible }: ConfigbarProps) {
+	const { activeConfig } = useAppSelector((state) => state)
+	const dispatch = useAppDispatch()
+
 	return (
 		<div className={styles.configbarContainer}>
 			<div className={styles.configbar}>
 				{menus.map((val, idx) => {
 					return val.type === "icon" ? (
-						<div className={`${styles.configbarItem}`} key={idx}>
+						<div
+							className={`${styles.configbarItem} ${
+								activeConfig.value === val.label
+									? styles.configbarItemActive
+									: ""
+							}`}
+							key={idx}
+							onClick={() => dispatch(setActiveConfig(val.label as string))}>
 							<div className={styles.itemIcon}>{val.icon}</div>
 							<div className={styles.itemLabel}>{val.label}</div>
 						</div>

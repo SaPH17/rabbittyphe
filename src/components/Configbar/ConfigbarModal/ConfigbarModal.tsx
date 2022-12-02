@@ -1,5 +1,7 @@
 import styles from "./ConfigbarModal.module.sass"
 import { menus } from "../Configbar"
+import { useAppDispatch, useAppSelector } from "../../../store/hooks"
+import { setActiveConfig } from "../../../store/slices/activeConfig"
 
 export type ConfigbarModalProps = {
 	isVisible: boolean
@@ -10,6 +12,9 @@ export default function ConfigbarModal({
 	isVisible,
 	setIsConfigbarVisible,
 }: ConfigbarModalProps) {
+	const { activeConfig } = useAppSelector((state) => state)
+	const dispatch = useAppDispatch()
+
 	return (
 		<>
 			{isVisible && (
@@ -23,7 +28,14 @@ export default function ConfigbarModal({
 						onClick={(e) => e.stopPropagation()}>
 						{menus.map((val, idx) => {
 							return val.type === "icon" ? (
-								<div className={`${styles.configbarItem}`} key={idx}>
+								<div
+									className={`${styles.configbarItem} ${
+										activeConfig.value === val.label
+											? styles.configbarItemActive
+											: ""
+									}`}
+									onClick={() => dispatch(setActiveConfig(val.label as string))}
+									key={idx}>
 									<div className={styles.itemLabel}>{val.label}</div>
 								</div>
 							) : (
