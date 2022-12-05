@@ -1,15 +1,13 @@
-import styles from "./ConfigbarItem.module.sass"
+import styles from "./ConfigbarModalItem.module.sass"
 
 export type ConfigbarItemProps = {
 	isActive: boolean
 	label: string
-	icon?: JSX.Element
 	onClickFunction: Function
 }
 
-export default function ConfigbarItem({
+export default function ConfigbarModalItem({
 	isActive,
-	icon = <></>,
 	label,
 	onClickFunction,
 }: ConfigbarItemProps) {
@@ -18,8 +16,9 @@ export default function ConfigbarItem({
 			className={`${styles.configbarItem} ${
 				isActive ? styles.configbarItemActive : ""
 			}`}
-			onClick={() => onClickFunction()}>
-			<div className={styles.itemIcon}>{icon}</div>
+			onClick={() => {
+				onClickFunction()
+			}}>
 			<div className={styles.itemLabel}>{label}</div>
 		</div>
 	)
