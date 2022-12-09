@@ -1,0 +1,53 @@
+@import '../../variables'
+
+.testContainer
+    display: flex
+    flex-direction: column
+    height: auto
+    flex-grow: 1
+    justify-content: center
+
+.wordWrapper
+    color: $secondary-color
+    line-height: 1em
+    font-size: 1.5rem
+    font-family: $text-font
+
+.word
+    display: inline-block
+    margin: 0.4em 0.25em
+
+.buttonContainer
+    display: flex
+    justify-content: center
+    padding-top: 1.5em
+
+.restartButton
+    color: $secondary-color
+    cursor: pointer
+    font-size: 1.15rem
+    transition-duration: 150ms
+    transition: transform ease-in 150ms
+    position: relative
+
+    &:hover
+        color: $text-color
+
+        &::after
+            transform: scale(1)
+            top: 150%
+
+    &::after
+        content: attr(data-tooltip)
+        display: block
+        position: absolute
+        background-color: rgba(black, .7)
+        padding: 0.5em 1em
+        color: white
+        font-family: $text-font
+        font-size: 1rem
+        top: 0
+        left: -325%
+        white-space: nowrap
+        transform: scale(0)
+        transition: transform ease-out 150ms, top ease-out 150ms

@@ -3,7 +3,7 @@ import { IoMdSettings } from "react-icons/io"
 import ConfigbarItem from "./ConfigbarItem"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { testConfig } from "../../constants/testConfig"
-import { AdditionalConfig } from "../../models/config"
+import { AdditionalConfig } from "../../types/config"
 import {
 	setActiveAdditionalConfig,
 	setActiveConfig,

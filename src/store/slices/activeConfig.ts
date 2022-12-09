@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AdditionalConfig } from '../../models/config'
+import { AdditionalConfig } from '../../types/config'
 
 type ActiveConfigState = {
   value: string

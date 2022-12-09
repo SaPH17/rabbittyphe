@@ -1,12 +1,5 @@
-import {
-	FaAt,
-	FaHashtag,
-	FaClock,
-	FaFont,
-	FaQuoteLeft,
-	FaWrench,
-} from "react-icons/fa"
-import { ConfigItem } from "../models/config"
+import { FaClock, FaFont, FaQuoteLeft, FaWrench } from "react-icons/fa"
+import { ConfigItem } from "../types/config"
 
 export const testConfig: ConfigItem[] = [
 	{

@@ -7,7 +7,7 @@ import {
 	togglePunctuation,
 } from "../../../store/slices/activeConfig"
 import { testConfig } from "../../../constants/testConfig"
-import { AdditionalConfig } from "../../../models/config"
+import { AdditionalConfig } from "../../../types/config"
 import ConfigbarModalItem from "./ConfigbarModalItem"
 
 export type ConfigbarModalProps = {
