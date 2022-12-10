@@ -32,11 +32,10 @@ export const testConfig: ConfigItem[] = [
 		label: "quote",
 		defaultAdditionalConfig: "medium",
 		additionalConfig: [
-			{ label: "all", value: 1 },
-			{ label: "short", value: 2 },
-			{ label: "medium", value: 3 },
-			{ label: "long", value: 4 },
-			{ label: "thicc", value: 5 },
+			{ label: "short", value: 1 },
+			{ label: "medium", value: 2 },
+			{ label: "long", value: 3 },
+			{ label: "thicc", value: 4 },
 		],
 	},
 	{

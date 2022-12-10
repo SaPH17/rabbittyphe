@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import activeConfigReducer from './slices/activeConfig'
+import wordListReducer from './slices/wordList'
 
 const store = configureStore({
   reducer: {
-    activeConfig: activeConfigReducer
+    activeConfig: activeConfigReducer,
+    wordList: wordListReducer
   }
 })
 
