@@ -3,8 +3,6 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks"
 import {
 	setActiveAdditionalConfig,
 	setActiveConfig,
-	toggleNumber,
-	togglePunctuation,
 } from "../../../store/slices/activeConfig"
 import { testConfig } from "../../../constants/testConfig"
 import { AdditionalConfig } from "../../../types/config"
@@ -33,20 +31,6 @@ export default function ConfigbarModal({
 					<div
 						className={styles.configbarModal}
 						onClick={(e) => e.stopPropagation()}>
-						<ConfigbarModalItem
-							isActive={activeConfig.isPunctuationEnabled}
-							label={"punctuation"}
-							onClickFunction={() => {
-								dispatch(togglePunctuation(!activeConfig.isPunctuationEnabled))
-							}}
-						/>
-						<ConfigbarModalItem
-							isActive={activeConfig.isNumberEnabled}
-							label={"numbers"}
-							onClickFunction={() => {
-								dispatch(toggleNumber(!activeConfig.isNumberEnabled))
-							}}
-						/>
 						<div className={styles.divider}></div>
 						{testConfig.map((val, idx) => (
 							<ConfigbarModalItem

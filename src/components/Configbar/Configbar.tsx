@@ -7,10 +7,7 @@ import { AdditionalConfig } from "../../types/config"
 import {
 	setActiveAdditionalConfig,
 	setActiveConfig,
-	togglePunctuation,
-	toggleNumber,
 } from "../../store/slices/activeConfig"
-import { FaAt, FaHashtag } from "react-icons/fa"
 
 export type ConfigbarProps = {
 	setIsConfigbarVisible: Function
@@ -23,22 +20,6 @@ export default function Configbar({ setIsConfigbarVisible }: ConfigbarProps) {
 	return (
 		<div className={styles.configbarContainer}>
 			<div className={styles.configbar}>
-				<ConfigbarItem
-					isActive={activeConfig.isPunctuationEnabled}
-					icon={<FaAt />}
-					label={"punctuation"}
-					onClickFunction={() => {
-						dispatch(togglePunctuation(!activeConfig.isPunctuationEnabled))
-					}}
-				/>
-				<ConfigbarItem
-					isActive={activeConfig.isNumberEnabled}
-					icon={<FaHashtag />}
-					label={"numbers"}
-					onClickFunction={() => {
-						dispatch(toggleNumber(!activeConfig.isNumberEnabled))
-					}}
-				/>
 				<div className={styles.divider}></div>
 				{testConfig.map((val, idx) => (
 					<ConfigbarItem

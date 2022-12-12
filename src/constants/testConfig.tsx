@@ -1,4 +1,4 @@
-import { FaClock, FaFont, FaQuoteLeft, FaWrench } from "react-icons/fa"
+import { FaClock, FaFont, FaQuoteLeft } from "react-icons/fa"
 import { ConfigItem } from "../types/config"
 
 export const testConfig: ConfigItem[] = [
@@ -37,12 +37,5 @@ export const testConfig: ConfigItem[] = [
 			{ label: "long", value: 3 },
 			{ label: "thicc", value: 4 },
 		],
-	},
-	{
-		type: "icon",
-		icon: <FaWrench />,
-		label: "custom",
-		defaultAdditionalConfig: "",
-		additionalConfig: [],
 	},
 ]
