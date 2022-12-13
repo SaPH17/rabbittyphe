@@ -27,7 +27,8 @@ export const generateWord = async (type : string, value : number|string) => {
         const json = await import(`../wordlists/english.json`)
         const words = json.words
         const shuffledWord = words.sort(() => Math.random() - 0.5)
-        return shuffledWord.slice(0, 30).join(' ')    }
+        return shuffledWord.slice(0, 30).join(' ')    
+    }
 
     return ""
 }

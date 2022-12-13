@@ -1,16 +1,17 @@
-import styles from "./App.module.sass"
-import Navbar from "./components/Navbar/Navbar"
-import Configbar from "./components/Configbar/Configbar"
-import ConfigbarModal from "./components/Configbar/ConfigbarModal/ConfigbarModal"
-import { useEffect, useState } from "react"
-import Test from "./components/Test/Test"
-import { generateWord } from "./helpers/wordHelper"
-import { useAppDispatch, useAppSelector } from "./store/hooks"
+import styles from './App.module.sass'
+import Navbar from './components/Navbar/Navbar'
+import Configbar from './components/Configbar/Configbar'
+import ConfigbarModal from './components/Configbar/ConfigbarModal/ConfigbarModal'
+import { useEffect, useState } from 'react'
+import Test from './components/Test/Test'
+import { generateWord } from './helpers/wordHelper'
+import { useAppDispatch, useAppSelector } from './store/hooks'
 import {
 	setWordList,
 	appendTypedWord,
 	deleteTypedWord,
-} from "./store/slices/wordList"
+	resetTypedWord,
+} from './store/slices/wordList'
 
 function App() {
 	const [configbarVisible, setIsConfigbarVisible] = useState(false)
@@ -18,10 +19,13 @@ function App() {
 		(state) => state.activeConfig
 	)
 	const { typedWord } = useAppSelector((state) => state.wordList)
+	const typedWordArray = typedWord.split(' ')
 	const dispatch = useAppDispatch()
+
 	const initializeWord = async () => {
 		const str = await generateWord(value, activeAdditionalConfig)
 		dispatch(setWordList(str))
+		dispatch(resetTypedWord())
 	}
 
 	useEffect(() => {
@@ -33,17 +37,21 @@ function App() {
 			const key = e.key
 			if (key.length === 1) {
 				dispatch(appendTypedWord(key))
-			} else if (key === "Backspace") {
+			} else if (key === 'Backspace') {
 				dispatch(deleteTypedWord())
 			}
+			document
+				.getElementsByClassName('word')
+				[typedWordArray.length].scrollIntoView({
+					behavior: 'smooth',
+					block: 'center',
+				})
 		}
 
 		return () => {
 			document.onkeydown = null
 		}
 	})
-
-	console.log(typedWord)
 
 	return (
 		<>

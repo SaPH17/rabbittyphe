@@ -12,14 +12,22 @@
     line-height: 1em
     font-size: 1.5rem
     font-family: $text-font
+    max-height: 123px
+    overflow: hidden
 
 .word
     display: inline-block
+    position: relative
     margin: 0.4em 0.25em
     user-select: none
 
-.active
-    text-decoration: underline
+.caret
+    position: absolute
+    background: transparent
+    width: 2px
+    height: 100%
+    animation: blink 1s infinite
+    transition: left 150ms
 
 .correct
     color: rgba(0, 255, 0, 1)
@@ -61,3 +69,7 @@
         white-space: nowrap
         transform: scale(0)
         transition: transform ease-out 150ms, top ease-out 150ms
+
+@keyframes blink
+    to
+        background: $primary-color
