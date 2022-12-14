@@ -4,7 +4,7 @@ export const generateWord = async (type : string, value : number|string) => {
         const json = await import(`../wordlists/english.json`)
         const words = json.words
         const shuffledWord = words.sort(() => Math.random() - 0.5)
-        return shuffledWord.slice(0, value as number).join(' ')
+        return shuffledWord.slice(0, value as number)
     }
     else if(type === 'quote'){
         const json = await import(`../wordlists/quotes.json`)
@@ -21,13 +21,13 @@ export const generateWord = async (type : string, value : number|string) => {
         })
         const selectedQuotes = quotes[Math.floor(Math.random() * quotes.length)]
 
-        return selectedQuotes.text
+        return selectedQuotes.text.split(' ')
     }
     else if(type === 'time'){
         const json = await import(`../wordlists/english.json`)
         const words = json.words
         const shuffledWord = words.sort(() => Math.random() - 0.5)
-        return shuffledWord.slice(0, 30).join(' ')    
+        return shuffledWord.slice(0, 30)    
     }
 
     return ""

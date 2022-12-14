@@ -1,23 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RefObject } from 'react'
 
 type WordListState = {
-    word: string
+    word: string[]
     typedWord: string
-    activeWordRef: RefObject<HTMLDivElement> | null
+    extraWord: string
+    typedHistory: string[]
 }
 
 const initialState: WordListState = {
-    word: '',
+    word: [],
     typedWord: '',
-    activeWordRef: null
+    extraWord: '',
+    typedHistory: [],
 }
 
 export const wordListSlice = createSlice({
   name: 'wordList',
   initialState,
   reducers: {
-    setWordList: (state, action : PayloadAction<string>) => {
+    setWordList: (state, action : PayloadAction<string[]>) => {
         state.word = action.payload
     },
     appendTypedWord: (state, action : PayloadAction<string>) => {
@@ -29,12 +30,15 @@ export const wordListSlice = createSlice({
     resetTypedWord: (state) => {
       state.typedWord = ''
     },
-    setActiveWordRef: (state, action : PayloadAction<any>) => {
-      state.activeWordRef = action.payload
-    }
+    setExtraWord: (state, action: PayloadAction<string>) => {
+      state.extraWord = action.payload
+    },
+    appendTypedHistory: (state, action: PayloadAction<string>) =>{
+      state.typedHistory.push(action.payload)
+    },
   },
 })
 
-export const { setWordList, appendTypedWord, resetTypedWord, deleteTypedWord, setActiveWordRef } = wordListSlice.actions
+export const { setWordList, appendTypedWord, resetTypedWord, deleteTypedWord, setExtraWord, appendTypedHistory } = wordListSlice.actions
 
 export default wordListSlice.reducer

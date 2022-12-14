@@ -1,33 +1,39 @@
 import styles from './Test.module.sass'
 import { FaRedo } from 'react-icons/fa'
 import { useAppSelector } from '../../store/hooks'
-import { useRef } from 'react'
+
 type TestProps = {
 	initializeWord: Function
 }
 
 export default function Test({ initializeWord }: TestProps) {
-	const { word, typedWord } = useAppSelector((state) => state.wordList)
-	const activeWord = useRef<HTMLDivElement>(null)
-	const wordArray = word.split(' ')
+	const { word, typedWord, extraWord, typedHistory } = useAppSelector(
+		(state) => state.wordList
+	)
 	const typedWordArray = typedWord.split(' ')
 
 	return (
 		<div className={styles.testContainer}>
 			<div className={styles.wordWrapper}>
-				{wordArray.map((val, wordIdx) => {
+				{word.map((val, wordIdx) => {
 					const isActive = wordIdx === typedWordArray.length - 1
 
 					return (
 						<div
-							className={`${styles.word} word`}
-							key={`${wordIdx}}`}
-							ref={isActive ? activeWord : null}>
+							className={`${styles.word} word ${
+								wordIdx < typedWordArray.length - 1 &&
+								val !== typedWordArray[wordIdx] + typedHistory[wordIdx]
+									? styles.wrongWord
+									: ''
+							}`}
+							key={`${wordIdx}}`}>
 							{isActive && (
 								<span
 									className={styles.caret}
 									style={{
-										left: `${typedWordArray[wordIdx].length}ch`,
+										left: `${
+											typedWordArray[wordIdx].length + extraWord.length
+										}ch`,
 									}}></span>
 							)}
 							{val.split('').map((val, charIdx) => {
@@ -51,6 +57,15 @@ export default function Test({ initializeWord }: TestProps) {
 									</span>
 								)
 							})}
+							{isActive
+								? extraWord.split('').map((val, charIdx) => {
+										return <span className={styles.extraWord}>{val}</span>
+								  })
+								: typedHistory[wordIdx]
+								? typedHistory[wordIdx].split('').map((val, charIdx) => {
+										return <span className={styles.extraWord}>{val}</span>
+								  })
+								: ''}
 						</div>
 					)
 				})}

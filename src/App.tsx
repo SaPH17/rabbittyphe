@@ -11,14 +11,17 @@ import {
 	appendTypedWord,
 	deleteTypedWord,
 	resetTypedWord,
+	setExtraWord,
+	appendTypedHistory,
 } from './store/slices/word'
 
 function App() {
 	const [configbarVisible, setIsConfigbarVisible] = useState(false)
-	const { value, activeAdditionalConfig } = useAppSelector(
-		(state) => state.activeConfig
-	)
-	const { typedWord } = useAppSelector((state) => state.wordList)
+
+	const {
+		activeConfig: { value, activeAdditionalConfig },
+		wordList: { typedWord, word, extraWord },
+	} = useAppSelector((state) => state)
 	const typedWordArray = typedWord.split(' ')
 	const dispatch = useAppDispatch()
 
@@ -26,6 +29,7 @@ function App() {
 		const str = await generateWord(value, activeAdditionalConfig)
 		dispatch(setWordList(str))
 		dispatch(resetTypedWord())
+		dispatch(setExtraWord(''))
 	}
 
 	useEffect(() => {
@@ -35,14 +39,31 @@ function App() {
 	useEffect(() => {
 		document.onkeydown = (e) => {
 			const key = e.key
-			if (key.length === 1) {
+			if (key === ' ') {
+				dispatch(appendTypedHistory(extraWord))
+				dispatch(setExtraWord(''))
 				dispatch(appendTypedWord(key))
+			} else if (key.length === 1) {
+				if (
+					word[typedWordArray.length - 1].length >
+					typedWordArray[typedWordArray.length - 1].length
+				) {
+					dispatch(appendTypedWord(key))
+				} else {
+					dispatch(setExtraWord(extraWord + key))
+				}
 			} else if (key === 'Backspace') {
-				dispatch(deleteTypedWord())
+				if (extraWord.length === 0) {
+					dispatch(deleteTypedWord())
+				} else {
+					dispatch(setExtraWord(extraWord.slice(0, -1)))
+				}
 			}
+			console.log(extraWord)
+
 			document
 				.getElementsByClassName('word')
-				[typedWordArray.length].scrollIntoView({
+				[typedWordArray.length]?.scrollIntoView({
 					behavior: 'smooth',
 					block: 'center',
 				})

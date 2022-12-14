@@ -21,6 +21,13 @@
     margin: 0.4em 0.25em
     user-select: none
 
+.extraWord
+    color: $wrong-color
+
+.wrongWord
+    text-decoration: underline
+    text-decoration-color: $wrong-color
+
 .caret
     position: absolute
     background: transparent
@@ -30,10 +37,10 @@
     transition: left 150ms
 
 .correct
-    color: rgba(0, 255, 0, 1)
+    color: $correct-color
 
 .wrong
-    color: rgba(255, 0, 0, 1)
+    color: $wrong-color
 
 .buttonContainer
     display: flex
