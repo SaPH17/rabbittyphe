@@ -1,12 +1,12 @@
-import styles from "./ConfigbarModal.module.sass"
-import { useAppDispatch, useAppSelector } from "../../../store/hooks"
+import styles from './ConfigbarModal.module.sass'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import {
 	setActiveAdditionalConfig,
 	setActiveConfig,
-} from "../../../store/slices/activeConfig"
-import { testConfig } from "../../../constants/testConfig"
-import { AdditionalConfig } from "../../../types/config"
-import ConfigbarModalItem from "./ConfigbarModalItem"
+} from '../../../store/slices/activeConfig'
+import { testConfig } from '../../../constants/testConfig'
+import { AdditionalConfig } from '../../../types/config'
+import ConfigbarModalItem from './ConfigbarModalItem'
 
 export type ConfigbarModalProps = {
 	isVisible: boolean
@@ -34,7 +34,7 @@ export default function ConfigbarModal({
 						<div className={styles.divider}></div>
 						{testConfig.map((val, idx) => (
 							<ConfigbarModalItem
-								key={idx}
+								key={`config-modal-${idx}`}
 								label={val.label}
 								isActive={activeConfig.value === val.label}
 								onClickFunction={() => {
@@ -54,7 +54,7 @@ export default function ConfigbarModal({
 								<div className={styles.divider}></div>
 								{activeConfig.additionalConfig.map((val, idx) => (
 									<ConfigbarModalItem
-										key={idx}
+										key={`additional-config-modal-${idx}`}
 										isActive={activeConfig.activeAdditionalConfig === val.label}
 										onClickFunction={() => {
 											dispatch(setActiveAdditionalConfig(val.label))

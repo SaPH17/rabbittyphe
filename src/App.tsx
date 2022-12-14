@@ -11,7 +11,7 @@ import {
 	appendTypedWord,
 	deleteTypedWord,
 	resetTypedWord,
-} from './store/slices/wordList'
+} from './store/slices/word'
 
 function App() {
 	const [configbarVisible, setIsConfigbarVisible] = useState(false)
