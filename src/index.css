@@ -7,6 +7,7 @@ body, html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  scrollbar-width: thin;
 }
 
 code {
@@ -23,4 +24,23 @@ code {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+::-webkit-scrollbar{
+  height: 5px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-corner{
+  background: #646669;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #646669;
+  border-radius: 2px;
+  transition: 125ms;
+}
+
+::-webkit-scrollbar-track{
+  background: 0 0
 }

@@ -1,0 +1,49 @@
+@import '../../variables'
+
+.formContainer
+  display: flex
+  flex-direction: column
+  height: auto
+  flex-grow: 1
+  align-items: center
+  margin-top: 7.5em
+  gap: 1em
+  font-family: $text-font
+
+.title
+  color: $text-color
+  font-size: 1.25rem
+
+.inputContainer
+  display: flex
+  flex-direction: column
+  gap: 1em
+
+.inputText
+  background-color: $secondary-alt-color
+  caret-color: $primary-color
+  color: $text-color
+  line-height: 1.25em
+  outline: none
+  padding: 0.5em
+  font-size: 1.15rem
+  border-radius: 0.5rem
+  border: none
+  font-family: $text-font
+
+.saveButton
+  appearance: none
+  background-color: $secondary-alt-color
+  border: none
+  border-radius: 0.5rem
+  font-size: 1.15rem
+  font-family: $text-font
+  padding: 0.5em
+  color: $text-color
+  width: 100%
+  cursor: pointer
+  transition-duration: 150ms
+
+  &:hover
+    color: $secondary-alt-color
+    background-color: $text-color

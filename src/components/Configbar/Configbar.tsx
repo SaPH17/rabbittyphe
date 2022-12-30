@@ -4,10 +4,7 @@ import ConfigbarItem from './ConfigbarItem'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { testConfig } from '../../constants/testConfig'
 import { AdditionalConfig } from '../../types/config'
-import {
-	setActiveAdditionalConfig,
-	setActiveConfig,
-} from '../../store/slices/activeConfig'
+import { setActiveAdditionalConfig, setActiveConfig } from '../../store/slices/activeConfig'
 
 export type ConfigbarProps = {
 	setIsConfigbarVisible: Function
@@ -20,7 +17,6 @@ export default function Configbar({ setIsConfigbarVisible }: ConfigbarProps) {
 	return (
 		<div className={styles.configbarContainer}>
 			<div className={styles.configbar}>
-				<div className={styles.divider}></div>
 				{testConfig.map((val, idx) => (
 					<ConfigbarItem
 						key={`config-${idx}`}
@@ -57,9 +53,7 @@ export default function Configbar({ setIsConfigbarVisible }: ConfigbarProps) {
 			<div className={styles.configbarMobile}>
 				<ConfigbarItem
 					isActive={false}
-					onClickFunction={() =>
-						setIsConfigbarVisible((oldValue: any) => !oldValue)
-					}
+					onClickFunction={() => setIsConfigbarVisible((oldValue: any) => !oldValue)}
 					icon={<IoMdSettings />}
 					label={'Test Settings'}
 				/>

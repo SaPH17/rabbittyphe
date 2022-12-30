@@ -1,0 +1,82 @@
+@import '../../variables'
+
+.resultContainer
+  display: flex
+  flex-direction: column
+  height: auto
+  flex-grow: 1
+  justify-content: center
+  align-items: center
+  gap: 2em
+
+.statsContainer
+  display: flex
+  gap: 2em
+
+.statsCard
+  display: flex
+  flex-direction: column
+  font-family: $text-font
+
+  .statsLabel
+    font-size: 2rem
+    color: $secondary-color
+
+  .statsData
+    font-size: 4rem
+    color: $primary-color
+
+  .testTypeData
+    font-size: 2.5rem
+
+.buttonContainer
+  display: flex
+  justify-content: center
+  padding-top: 1.5em
+  gap: 2em
+
+.button
+  color: $secondary-color
+  cursor: pointer
+  font-size: 1.25rem
+  transition-duration: 150ms
+  transition: transform ease-in 150ms
+  position: relative
+
+  &:hover
+    color: $text-color
+
+    &::after
+      transform: scale(1)
+      top: 150%
+
+  &::after
+    content: attr(data-tooltip)
+    display: block
+    position: absolute
+    background-color: rgba(black, .7)
+    padding: 0.5em 1em
+    color: white
+    font-family: $text-font
+    font-size: 1rem
+    top: 0
+    white-space: nowrap
+    transform: scale(0)
+    transition: transform ease-out 150ms, top ease-out 150ms
+
+.saveButton::after
+  left: -250%
+
+.restartButton::after
+  left: -325%
+
+@media screen and ( max-width: 400px )
+  .statsCard
+    .statsLabel
+      font-size: 1rem
+
+    .statsData
+      font-size: 3rem
+
+    .testTypeData
+      font-size: 1.5rem

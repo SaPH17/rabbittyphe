@@ -1,0 +1,74 @@
+@import '../../variables'
+
+.modalContainer
+  position: fixed
+  z-index: 10
+  inset: 0
+  padding: 2em 0
+  background: rgba(0,0,0,.75)
+  display: flex
+  justify-content: center
+  align-items: center
+
+.modal
+  background-color: $background-color
+  border-radius: 0.5em
+  max-width: 800px
+  display: flex
+  width: calc(100vw - 2em)
+  flex-direction: column
+  gap: 1em
+  padding: 1em
+
+.title
+  font-family: $text-font
+  text-align: center
+  color: $text-color
+  font-size: 1.75rem
+  margin: 0.25em 0 1em 0
+
+.tableWrapper
+  max-height: 360px
+  overflow-y: scroll
+
+table
+  font-family: $text-font
+  border-collapse: collapse
+  border-spacing: 0
+  width: 97%
+  margin: 0
+
+thead
+  font-size: 0.75rem
+  color: $secondary-color
+
+.subtitle
+  opacity: 0.5
+
+tbody
+  color: $text-color
+  font-size: 0.8rem
+
+  tr:nth-child(odd)
+    background-color: $secondary-alt-color
+    border-radius: 0.5rem
+
+    td
+      &:first-child
+        border-radius: 0.5rem 0 0 0.5rem
+      &:last-child
+        border-radius: 0 0.5rem 0.5rem 0
+
+td
+  padding: 1em
+
+  &:first-child
+    padding-left: 2em
+
+  &:last-child
+    padding-right: 2em
+
+.alignRight
+  display: flex
+  flex-direction: column
+  align-items: flex-end
