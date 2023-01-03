@@ -4,7 +4,7 @@ import Configbar from './components/Configbar/Configbar'
 import ConfigbarModal from './components/Configbar/ConfigbarModal/ConfigbarModal'
 import { useEffect, useState } from 'react'
 import Test from './components/Test/Test'
-import { generateWord } from './helpers/wordHelper'
+import { appendWord, generateWord } from './helpers/wordHelper'
 import { useAppDispatch, useAppSelector } from './store/hooks'
 import {
 	appendTypedWord,
@@ -13,6 +13,7 @@ import {
 	appendTypedHistory,
 	popTypedHistory,
 	resetTest,
+	setWordList,
 } from './store/slices/word'
 import { getLastElement } from './helpers/arrayHelper'
 import { decrementTimer, incrementTimer, setTimer, setTimerId, setTotalWordTyped } from './store/slices/test'
@@ -49,11 +50,11 @@ function App() {
 	}, [dispatch, value, activeAdditionalConfig])
 
 	useEffect(() => {
-		if (leaderboards.length === 0) {
-			dispatch(setLeaderboards(JSON.parse(localStorage.getItem('leaderboards') ?? '[]')))
-		} else {
-			localStorage.setItem('leaderboards', JSON.stringify(leaderboards))
-		}
+		dispatch(setLeaderboards(JSON.parse(localStorage.getItem('leaderboards') ?? '[]')))
+	}, [])
+
+	useEffect(() => {
+		localStorage.setItem('leaderboards', JSON.stringify(leaderboards))
 	}, [leaderboards])
 
 	const startTimeTest = async () => {
@@ -145,11 +146,19 @@ function App() {
 		return false
 	}
 
+	const loadMoreWords = async () => {
+		const words = await appendWord(word)
+		dispatch(setWordList([...word, ...words]))
+	}
+
 	useEffect(() => {
 		if (checkTestFinished() && timerId) {
 			clearInterval(timerId)
 			dispatch(setTimerId(null))
 			setIsTestFinished(true)
+		}
+		if (typedWordArray.length >= word.length / 2) {
+			loadMoreWords()
 		}
 	}, [dispatch, timerId, timer, typedWordArray])
 
