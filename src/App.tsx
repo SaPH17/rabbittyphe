@@ -157,7 +157,7 @@ function App() {
 			dispatch(setTimerId(null))
 			setIsTestFinished(true)
 		}
-		if (typedWordArray.length >= word.length / 2) {
+		if (typedWordArray.length >= word.length / 2 && value === 'time') {
 			loadMoreWords()
 		}
 	}, [dispatch, timerId, timer, typedWordArray])
