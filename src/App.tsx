@@ -54,7 +54,9 @@ function App() {
 	}, [])
 
 	useEffect(() => {
-		localStorage.setItem('leaderboards', JSON.stringify(leaderboards))
+		if (leaderboards.length > 0) {
+			localStorage.setItem('leaderboards', JSON.stringify(leaderboards))
+		}
 	}, [leaderboards])
 
 	const startTimeTest = async () => {
